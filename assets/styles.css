@@ -1,0 +1,80 @@
+/* Font import */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;900&display=swap");
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  margin: 0;
+  padding-top: 5vh;
+  font-size: 3rem;
+}
+
+h3 span {
+  font-weight: 400;
+}
+
+.bg {
+  background-image: url("mars-svgrepo-com.svg");
+  min-height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.hud {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+  justify-content: space-between;
+  margin: 10vh 20px;
+}
+
+.lander img {
+  width: 200px;
+  height: auto;
+  transition: ease-in-out 0.5s;
+}
+
+a {
+  color: white;
+  background: rgb(68, 68, 184);
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  transition: all ease-in-out 0.2s;
+  width: 50%;
+  text-align: center;
+  align-self: center;
+  margin-top: 5vh;
+}
+
+a:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.75);
+}
+
+.disabled {
+  background: rgb(68, 68, 184, 0.5);
+  cursor: not-allowed;
+  color: lightgrey;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.741);
+  border-radius: 10px;
+  width: 400px;
+  padding: 20px;
+}
