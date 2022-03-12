@@ -3,13 +3,24 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// get the lander from the document
+// get the elements from the document
 const lander = document.querySelector("#lander");
 const testAngle = document.querySelector("#testAngle");
 const landerAngle = document.querySelector("#landerAngle");
 const testButton = document.querySelector("a");
 const timeRemaining = document.querySelector("#time");
 const landerStatus = document.querySelector("#status");
+const report = document.querySelector(".report");
+const wrapper = document.querySelector(".wrapper");
+
+// Create a list to handle the events of each round
+const testResults = [];
+
+// Lander object to be used in the functions
+const landerObj = {
+  angle: 0,
+  isAlive: true,
+};
 
 // Function to test your algorithm
 async function test() {
@@ -28,10 +39,15 @@ async function test() {
   //   Call the students' function
   await sleep(1000);
   lander.style.transform = `rotate(${stayAlive(angle)}deg)`;
+  landerObj.angle = stayAlive(angle);
   landerAngle.innerHTML = `${stayAlive(angle)}&deg`;
   landerObj.angle === 12
     ? (landerStatus.innerHTML = "👍")
     : (landerStatus.innerHTML = "💩");
+  testResults.push({
+    testAngle: angle,
+    landerAngle: landerObj.angle,
+  });
   return angle;
 }
 
@@ -51,32 +67,31 @@ async function beginTest() {
   testAngle.innerHTML = "";
   landerAngle.innerHTML = "";
   landerStatus.innerHTML = "";
+  report.scrollIntoView({ behavior: "smooth" });
+  report.style.opacity = 1;
+  testResults.map((result, i) => {
+    let instance = document.createElement("div");
+    instance.classList.add("instance");
+    instance.innerHTML = `
+    <h3>Round ${i + 1}</h3>
+    <p>Test: ${result.testAngle}&deg;</p>
+    <p>After adjustment: ${result.landerAngle}&deg;</p>
+    `;
+    wrapper.appendChild(instance);
+  });
 }
 
 // DO YOUR WORK BELOW
-// Lander object to be used in the functions
-const landerObj = {
-  angle: 0,
-  isAlive: true,
-};
 
 // Function to rotate the lander
 function stayAlive(angle) {
-  let correction = null;
+  let newAngle = angle;
   if (angle > 12) {
     adjustment = angle - 12;
-    correction = angle - adjustment;
-    landerObj.angle = correction;
-    console.log(
-      `The input angle is ${angle} and the correction is ${adjustment}.  This makes the lander's angle ${landerObj.angle}`
-    );
+    newAngle = angle - adjustment;
   } else {
     adjustment = 12 - angle;
-    correction = angle + adjustment;
-    landerObj.angle = correction;
-    console.log(
-      `The input angle is ${angle} and the correction is ${adjustment}.  This makes the lander's angle ${landerObj.angle}`
-    );
+    newAngle = angle + adjustment;
   }
-  return correction;
+  return newAngle;
 }
