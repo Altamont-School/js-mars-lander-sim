@@ -86,12 +86,5 @@ async function beginTest() {
 // Function to rotate the lander
 function stayAlive(angle) {
   let newAngle = angle;
-  if (angle > 12) {
-    adjustment = angle - 12;
-    newAngle = angle - adjustment;
-  } else {
-    adjustment = 12 - angle;
-    newAngle = angle + adjustment;
-  }
   return newAngle;
 }
