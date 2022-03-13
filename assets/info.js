@@ -12,6 +12,7 @@ const timeRemaining = document.querySelector("#time");
 const landerStatus = document.querySelector("#status");
 const report = document.querySelector(".report");
 const wrapper = document.querySelector(".wrapper");
+const bg = document.querySelector(".bg");
 
 // Create a list to handle the events of each round
 const testResults = [];
@@ -27,6 +28,8 @@ async function test() {
   // disable testButton
   testButton.classList.add("disabled");
   testButton.innerHTML = "Testing...";
+  // Make everything go crazy!
+  bg.classList.add("bg-active");
   // generate a random angle
   var angle = Math.random() * 180; // Changed this to 180 for more "realistic" animation...
   angle = Math.round(angle * 100) / 100;
@@ -67,6 +70,7 @@ async function beginTest() {
   testAngle.innerHTML = "";
   landerAngle.innerHTML = "";
   landerStatus.innerHTML = "";
+  bg.classList.remove("bg-active");
   report.scrollIntoView({ behavior: "smooth" });
   report.style.opacity = 1;
   testResults.map((result, i) => {
