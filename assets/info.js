@@ -13,9 +13,14 @@ const landerStatus = document.querySelector("#status");
 const report = document.querySelector(".report");
 const wrapper = document.querySelector(".wrapper");
 const bg = document.querySelector(".bg");
+// get the rocket noise from the file system
+const rocketNoise = new Audio("./assets/rocket-engine.mp3");
 
 // Create a list to handle the events of each round
 const testResults = [];
+
+// Vibration array
+const vibrate = [200, 50, 25, 50, 20, 20, 17, 28, 17, 20, 20, 25, 50, 50, 200];
 
 // Lander object to be used in the functions
 const landerObj = {
@@ -30,6 +35,8 @@ async function test() {
   testButton.innerHTML = "Testing...";
   // Make everything go crazy!
   bg.classList.add("bg-active");
+  rocketNoise.play();
+  window.navigator.vibrate && window.navigator.vibrate(vibrate);
   // generate a random angle
   var angle = Math.random() * 180; // Changed this to 180 for more "realistic" animation...
   angle = Math.round(angle * 100) / 100;
@@ -71,6 +78,7 @@ async function beginTest() {
   landerAngle.innerHTML = "";
   landerStatus.innerHTML = "";
   bg.classList.remove("bg-active");
+  rocketNoise.pause();
   report.scrollIntoView({ behavior: "smooth" });
   report.style.opacity = 1;
   testResults.map((result, i) => {
