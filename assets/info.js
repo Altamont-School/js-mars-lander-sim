@@ -36,7 +36,7 @@ async function test() {
   // Make everything go crazy!
   bg.classList.add("bg-active");
   rocketNoise.play();
-  window.navigator.vibrate && window.navigator.vibrate(vibrate);
+  window.navigator.vibrate(vibrate);
   // generate a random angle
   var angle = Math.random() * 180; // Changed this to 180 for more "realistic" animation...
   angle = Math.round(angle * 100) / 100;
