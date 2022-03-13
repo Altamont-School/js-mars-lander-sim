@@ -28,7 +28,7 @@ async function test() {
   testButton.classList.add("disabled");
   testButton.innerHTML = "Testing...";
   // generate a random angle
-  var angle = Math.random() * 360;
+  var angle = Math.random() * 180; // Changed this to 180 for more "realistic" animation...
   angle = Math.round(angle * 100) / 100;
   //   set the test angle in the document
   testAngle.innerHTML = `${angle}&deg;`;
@@ -37,7 +37,7 @@ async function test() {
   landerObj.angle = angle;
   lander.style.transform = `rotate(${landerObj.angle}deg)`;
   //   Call the students' function
-  await sleep(1000);
+  await sleep(100);
   lander.style.transform = `rotate(${stayAlive(angle)}deg)`;
   landerObj.angle = stayAlive(angle);
   landerAngle.innerHTML = `${stayAlive(angle)}&deg`;
@@ -54,10 +54,10 @@ async function test() {
 // Function to start the test and run it for ten rounds
 async function beginTest() {
   // Interval for the test
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 100; i++) {
     test();
-    timeRemaining.innerHTML = 10 - (i + 1);
-    await sleep(2000);
+    timeRemaining.innerHTML = 100 - (i + 1);
+    await sleep(200);
   }
   //   reset everything
   lander.style.transform = `rotate(0deg)`;

@@ -44,7 +44,7 @@ h3 span {
 .lander img {
   width: 200px;
   height: auto;
-  transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.2s;
 }
 
 a {
@@ -82,7 +82,7 @@ a:hover {
 }
 
 .report {
-  width: 100%;
+  max-width: 100%;
   background: rgba(255, 255, 255, 0.741);
   min-height: 0px;
   border-radius: 5px;
@@ -93,8 +93,9 @@ a:hover {
 }
 
 .wrapper {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 10px;
   width: 100%;
 }
 
